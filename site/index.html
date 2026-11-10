@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Колесо фортуны</title>
+<style>
+  :root{--bg:#f4f5f3;--card:#fff;--ink:#1f282c;--mute:#6a7072;--line:#e3e5e2;--green:#36bc46}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Manrope,Arial,sans-serif}
+  .wrap{max-width:760px;margin:0 auto;padding:40px 16px 120px}
+  h1{font-size:32px;line-height:1.15;margin:0 0 12px}
+  h2{font-size:20px;margin:36px 0 10px}
+  p{margin:0 0 12px}
+  .sub{color:var(--mute)}
+  .row{display:flex;flex-wrap:wrap;gap:12px;margin:20px 0}
+  .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:6px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:600 15px Manrope,Arial,sans-serif;cursor:pointer}
+  button.main{background:var(--green);border-color:var(--green);color:#fff}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+  ul{margin:0;padding-left:20px}
+  li{margin:4px 0}
+  pre{margin:0;white-space:pre-wrap;word-break:break-word;font:13px/1.5 ui-monospace,Menlo,monospace}
+  code{font:13px ui-monospace,Menlo,monospace;background:#eceee9;padding:1px 5px;border-radius:4px}
+  .lead{min-height:48px}
+  html #tema-btn{right:auto;left:14px}
+</style>
+<style data-tema-v1>
+html[data-theme=dark]{color-scheme:dark}
+html[data-theme=dark] body{background:#141518!important;color:#e4e4e2!important}
+html[data-theme=dark] a{color:#8ab8ff}
+html[data-theme=dark] :is(.t,.box,.card,details,.kit,.nav,.code button,button,.btn,textarea,input,select){background:#1f2125!important;color:#e4e4e2!important;border-color:#3a3c42!important}
+html[data-theme=dark] button.main,html[data-theme=dark] .nav a,html[data-theme=dark] .step span{background:#e4e4e2!important;color:#141518!important}
+html[data-theme=dark] :is(.chip,.int,code,th){background:#2a2d33!important;color:#e4e4e2!important}
+html[data-theme=dark] :is(.flag,.note){background:#3a3220!important;color:#f1e6c8!important}
+html[data-theme=dark] .ready{background:#1f3320!important;color:#d6ecd0!important}
+html[data-theme=dark] .stop{background:#3b2222!important;color:#f3d6d3!important}
+html[data-theme=dark] :is(td,th,details[open] summary){border-color:#33363c!important}
+html[data-theme=dark] :is(.sub,.meta,.top,small,.ex small,details){color:#a9abb0!important}
+html[data-theme=dark] :is(h1,h2,h3,.day,dt,summary){color:#f2f2f0!important}
+html[data-theme=dark] img{filter:brightness(.92)}
+#tema-btn{position:fixed;right:14px;bottom:14px;z-index:99;width:44px;height:44px;border-radius:50%;border:1px solid #ccc;background:#fff;color:#111;font-size:20px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+html[data-theme=dark] #tema-btn{background:#2a2d33!important;color:#f2f2f0!important;border-color:#44474e!important}
+</style><script>(function(){var t;try{t=localStorage.getItem('tema')}catch(e){}
+if(!t){var h=new Date().getHours();t=(h>=19||h<7||(matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))?'dark':'light'}
+document.documentElement.setAttribute('data-theme',t)})();</script></head>
+<body>
+<div class="wrap">
+  <h1>Колесо фортуны</h1>
+  <p class="sub">Копия виджета с meridian.xfit.ru: тот же вид, те же призы и тексты, то же вращение – 4 оборота и плавное торможение за 7 секунд, затем промокод.</p>
+
+  <div class="row">
+    <button class="btn main" type="button" onclick="FortuneWheel.open()">Открыть колесо</button>
+    <button class="btn" type="button" onclick="FortuneWheel.reset();document.getElementById('lead').textContent='Пока пусто – покрутите колесо.'">Сбросить выигрыш и покрутить снова</button>
+  </div>
+  <p class="sub">Как в оригинале: само всплывает через 10 секунд на странице, второй раз – через 100 секунд, если закрыли, не покрутив. После выигрыша больше не всплывает, а круглая кнопка в углу снова показывает приз и промокод.</p>
+
+  <h2>Что ушло бы в заявку</h2>
+  <div class="card lead"><pre id="lead">Пока пусто – покрутите колесо.</pre></div>
+
+  <h2>Что совпадает с оригиналом</h2>
+  <div class="card">
+    <ul>
+      <li>Карточка 400 px, половина колеса сверху, белая стрелка снизу, 10 секторов зелёный / бирюзовый, 6 призов по кругу.</li>
+      <li>Тексты: «Получите бонус сейчас!», подзаголовок, поля «Ваше имя*» и «Ваш телефон*», кнопка «Крутить колесо».</li>
+      <li>Пустые поля подсвечиваются розовым, на кнопке во время вращения – бегущие полоски.</li>
+      <li>Экран выигрыша: промокод в пунктирной рамке с копированием по клику, название приза, «Мы свяжемся с вами…».</li>
+    </ul>
+  </div>
+
+  <h2>Чем отличается</h2>
+  <div class="card">
+    <ul>
+      <li>Нет подписи «Сделано в Calltouch» – это их марка.</li>
+      <li>Шрифт – бесплатный Manrope: в оригинале платный TT Norms.</li>
+      <li>Добавлена пустая галочка согласия: без неё заявка не уходит, строка согласия краснеет. Отключается одной строкой <code>consentCheckbox: false</code>.</li>
+      <li>Приз выбирает сам виджет (можно задать вес каждого), промокоды свои – заменить на настоящие.</li>
+    </ul>
+  </div>
+
+  <h2>Как поставить на сайт</h2>
+  <div class="card"><pre>&lt;script&gt;
+window.FortuneWheelConfig = {
+  endpoint: 'https://ваш-сервер/lead',      // куда слать заявку (JSON)
+  privacyUrl: '/privacy-policy',
+  metrika: { id: 12345678, goal: 'wheel_spin' },
+  prizes: [
+    { name: 'Бонусная карта на 45 дней', code: 'BONUS45' },
+    { name: '5 гостевых визитов',        code: 'GUEST5'  },
+    { name: 'Скидка 15% на абонемент',   code: 'SALE15'  },
+    { name: 'Скидка 10% на абонемент',   code: 'SALE10'  },
+    { name: '30 дней фитнеса',           code: 'FIT30'   },
+    { name: '30 дней заморозки',         code: 'FREEZE30' }
+  ]
+};
+&lt;/script&gt;
+&lt;script src="https://tema-mail.github.io/fortune-wheel/fortune-wheel.js" defer&gt;&lt;/script&gt;</pre></div>
+  <p class="sub" style="margin-top:12px">В заявку кроме имени и телефона уходят приз, промокод, страница, откуда пришли, и метки utm / yclid / gclid первого захода.</p>
+</div>
+
+<script>
+  window.FortuneWheelConfig = {
+    privacyUrl: '#',
+    onLead: function (lead) {
+      document.getElementById('lead').textContent = JSON.stringify(lead, null, 2);
+    }
+  };
+</script>
+<script src="fortune-wheel.js" defer></script>
+<script data-tema-v1>(function(){var b=document.createElement('button');b.id='tema-btn';b.type='button';
+function upd(){var d=document.documentElement.getAttribute('data-theme')==='dark';b.textContent=d?'☀':'☾';b.title=d?'Светлая тема':'Тёмная тема';b.setAttribute('aria-label',b.title)}
+b.onclick=function(){var n=document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('tema',n)}catch(e){}upd()};
+upd();document.body.appendChild(b)})();</script></body>
+</html>
